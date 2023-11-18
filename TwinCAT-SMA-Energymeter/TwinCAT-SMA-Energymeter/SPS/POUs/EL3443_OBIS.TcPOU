@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="EL3443_OBIS" Id="{2f428b75-8f80-47af-b9e6-b0a9c224aa13}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK EL3443_OBIS
+VAR_INPUT
+	EL3443 : MDP5001_341_A3044239;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	unixTime: UnixTimestamp;
+    timestampSeconds: ULINT;
+    timestampMilliseconds: ULINT;
+	
+	obis_data : FB_OBIS;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[unixTime();
+timestampMilliseconds := unixTime.milliseconds;
+timestampSeconds := unixTime.seconds;
+
+obis_data.addTime(u32time := ULINT_TO_UDINT(timestampMilliseconds));
+
+//L1------------------------------------------------
+
+obis_data.Addfloat(datatype := OBIS_Datatype.L1_Voltage, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Basic_Voltage);
+obis_data.Addfloat(datatype := OBIS_Datatype.L1_Current, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Basic_Current);
+obis_data.Addfloat(datatype := OBIS_Datatype.L1_PowerFactor, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Power_Factor);
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Active_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ActivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Active_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ActivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ActivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ActivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Active_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Apparent_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ApparentPowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Apparent_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ApparentPowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ApparentPowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ApparentPowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Apparent_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Reactive_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ReactivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Reactive_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ReactivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ReactivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L1_ReactivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L1_Power_Reactive_Power);	
+END_IF
+
+
+(*
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ActiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ActiveEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ApparentEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ApparentEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ReactiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L1_ReactiveEnergyNegative, u64data := 0);
+
+*)
+
+//L2------------------------------------------------
+
+obis_data.Addfloat(datatype := OBIS_Datatype.L2_Voltage, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Basic_Voltage);
+obis_data.Addfloat(datatype := OBIS_Datatype.L2_Current, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Basic_Current);
+obis_data.Addfloat(datatype := OBIS_Datatype.L2_PowerFactor, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Power_Factor);
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Active_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ActivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Active_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ActivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ActivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ActivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Active_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Apparent_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ApparentPowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Apparent_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ApparentPowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ApparentPowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ApparentPowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Apparent_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Reactive_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ReactivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Reactive_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ReactivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ReactivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L2_ReactivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L2_Power_Reactive_Power);	
+END_IF
+
+(*
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ActiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ActiveEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ApparentEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ApparentEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ReactiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L2_ReactiveEnergyNegative, u64data := 0);
+*)
+
+//L3------------------------------------------------
+
+obis_data.Addfloat(datatype := OBIS_Datatype.L3_Voltage, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Basic_Voltage);
+obis_data.Addfloat(datatype := OBIS_Datatype.L3_Current, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Basic_Current);
+obis_data.Addfloat(datatype := OBIS_Datatype.L3_PowerFactor, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Power_Factor);
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Active_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ActivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Active_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ActivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ActivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ActivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Active_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Apparent_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ApparentPowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Apparent_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ApparentPowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ApparentPowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ApparentPowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Apparent_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Reactive_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ReactivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Reactive_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ReactivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ReactivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.L3_ReactivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_L3_Power_Reactive_Power);	
+END_IF
+
+(*
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ActiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ActiveEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ApparentEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ApparentEnergyNegative, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ReactiveEnergyPositive, u64data := 0);
+obis_data.AddUint64(datatype := OBIS_Datatype.L3_ReactiveEnergyNegative, u64data := 0);
+*)
+
+//Total------------------------------------------------
+
+
+obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_PowerFactor, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_Total_Basic_Power_Factor);
+obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_Frequency, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_Total_Basic_Frequency);
+
+(*
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ActiveEnergyPositive, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Active_Active_Positive_Energy);
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ActiveEnergyNegative, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Active_Active_Negative_Energy);
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ApparentEnergyPositive, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Apparent_Apparent_Positive_Energy);
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ApparentEnergyNegative, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Apparent_Apparent_Negative_Energy);
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ReactiveEnergyPositive, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Reactive_Reactive_Positive_Energy);
+obis_data.AddUint64(datatype := OBIS_Datatype.TOTAL_ReactiveEnergyNegative, u64data := EL3443.MDP5001_341_Input.MDP5001_341_Total_Reactive_Reactive_Negative_Energy);
+*)
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_Total_Active_Active_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ActivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_Total_Active_Active_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ActivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ActivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ActivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_Total_Active_Active_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_Total_Apparent_Apparent_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ApparentPowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_Total_Apparent_Apparent_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ApparentPowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ApparentPowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ApparentPowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_Total_Apparent_Apparent_Power);	
+END_IF
+
+IF EL3443.MDP5001_341_Input.MDP5001_341_Total_Reactive_Reactive_Power > 0.0 THEN
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ReactivePowerPositive, floatdata := EL3443.MDP5001_341_Input.MDP5001_341_Total_Reactive_Reactive_Power);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ReactivePowerNegative, floatdata := 0.0);
+ELSE
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ReactivePowerPositive, floatdata := 0.0);
+	obis_data.Addfloat(datatype := OBIS_Datatype.TOTAL_ReactivePowerNegative, floatdata := -EL3443.MDP5001_341_Input.MDP5001_341_Total_Reactive_Reactive_Power);	
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Method Name="GetData" Id="{5f67d37e-2009-4302-a5f5-393a01f1ed92}">
+      <Declaration><![CDATA[METHOD GetData : POINTER TO BYTE
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetData := obis_data.GetData();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDataLength" Id="{ef8dfdd0-5195-4c74-ba58-3906a8fac48c}">
+      <Declaration><![CDATA[METHOD GetDataLength : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetDataLength := 608;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="EL3443_OBIS">
+      <LineId Id="3" Count="163" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EL3443_OBIS.GetData">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EL3443_OBIS.GetDataLength">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

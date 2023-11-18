@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{3fc796c7-da3a-491a-9e37-cc741c45d921}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	//Devices
+	EL3443_Terminal			: MDP5001_341_A3044239;
+	fbspeedwire				: FB_SPEEDWIRE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbspeedwire(
+	EL3443 := EL3443_Terminal
+	);
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="78" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

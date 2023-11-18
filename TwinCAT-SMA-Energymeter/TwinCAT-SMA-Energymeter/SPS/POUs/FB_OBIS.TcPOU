@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_OBIS" Id="{ca563da3-b65c-42f1-8e3f-85cb06b68a34}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_OBIS
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	data : ARRAY [0..607] OF BYTE := [83, 77, 65, 0, 0, 4, 2, 160, 0, 0, 0, 1, 2, 76, 0, 16, 96, 105, 1, 93, 113, 87, 157, 42, 145, 195, 170, 229, 0, 1, 4, 0, 0, 0, 4, 192, 0, 1, 8, 0, 0, 0, 0, 1, 27, 80, 113, 64, 0, 2, 4, 0, 0, 0, 0, 0, 0, 2, 8, 0, 0, 0, 0, 0, 65, 115, 204, 96, 0, 3, 4, 0, 0, 0, 0, 0, 0, 3, 8, 0, 0, 0, 0, 0, 1, 68, 24, 192, 0, 4, 4, 0, 0, 0, 7, 97, 0, 4, 8, 0, 0, 0, 0, 0, 203, 199, 123, 0, 0, 9, 4, 0, 0, 0, 8, 198, 0, 9, 8, 0, 0, 0, 0, 1, 121, 25, 106, 32, 0, 10, 4, 0, 0, 0, 0, 0, 0, 10, 8, 0, 0, 0, 0, 0, 70, 76, 180, 64, 0, 13, 4, 0, 0, 0, 2, 28, 0, 14, 4, 0, 0, 0, 195, 240, 0, 21, 4, 0, 0, 0, 0, 0, 0, 21, 8, 0, 0, 0, 0, 0, 72, 109, 19, 160, 0, 22, 4, 0, 0, 0, 0, 217, 0, 22, 8, 0, 0, 0, 0, 0, 30, 95, 6, 64, 0, 23, 4, 0, 0, 0, 0, 0, 0, 23, 8, 0, 0, 0, 0, 0, 0, 136, 59, 0, 0, 24, 4, 0, 0, 0, 0, 223, 0, 24, 8, 0, 0, 0, 0, 0, 37, 222, 86, 0, 0, 29, 4, 0, 0, 0, 0, 0, 0, 29, 8, 0, 0, 0, 0, 0, 101, 164, 5, 0, 0, 30, 4, 0, 0, 0, 1, 55, 0, 30, 8, 0, 0, 0, 0, 0, 30, 244, 112, 63, 0, 31, 4, 0, 0, 0, 0, 180, 0, 32, 4, 0, 0, 3, 138, 34, 0, 33, 4, 0, 0, 0, 2, 188, 0, 41, 4, 0, 0, 0, 6, 72, 0, 41, 8, 0, 0, 0, 0, 0, 166, 88, 167, 224, 0, 42, 4, 0, 0, 0, 0, 0, 0, 42, 8, 0, 0, 0, 0, 0, 16, 177, 174, 128, 0, 43, 4, 0, 0, 0, 0, 0, 0, 43, 8, 0, 0, 0, 0, 0, 1, 149, 101, 64, 0, 44, 4, 0, 0, 0, 4, 236, 0, 44, 8, 0, 0, 0, 0, 0, 114, 214, 221, 96, 0, 49, 4, 0, 0, 0, 7, 251, 0, 49, 8, 0, 0, 0, 0, 0, 209, 9, 218, 224, 0, 50, 4, 0, 0, 0, 0, 0, 0, 50, 8, 0, 0, 0, 0, 0, 19, 30, 104, 192, 0, 51, 4, 0, 0, 0, 4, 96, 0, 52, 4, 0, 0, 3, 133, 4, 0, 53, 4, 0, 0, 0, 3, 22, 0, 61, 4, 0, 0, 0, 0, 0, 0, 61, 8, 0, 0, 0, 0, 0, 58, 50, 2, 159, 0, 62, 4, 0, 0, 0, 0, 176, 0, 62, 8, 0, 0, 0, 0, 0, 32, 9, 215, 224, 0, 63, 4, 0, 0, 0, 0, 0, 0, 63, 8, 0, 0, 0, 0, 0, 0, 93, 98, 64, 0, 64, 4, 0, 0, 0, 1, 150, 0, 64, 8, 0, 0, 0, 0, 0, 52, 73, 49, 96, 0, 69, 4, 0, 0, 0, 0, 0, 0, 69, 8, 0, 0, 0, 0, 0, 93, 66, 99, 192, 0, 70, 4, 0, 0, 0, 1, 187, 0, 70, 8, 0, 0, 0, 0, 0, 33, 166, 237, 224, 0, 71, 4, 0, 0, 0, 0, 230, 0, 72, 4, 0, 0, 3, 130, 202, 0, 73, 4, 0, 0, 0, 1, 144, 144, 0, 0, 0, 2, 0, 18, 82, 0, 0, 0, 0];
+	u32tmp : UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//sma signature
+//data[0..3] = 83, 77, 65, 0, 
+
+//sma tag0
+//data[4..7] = 0, 4, 2, 160,
+
+//sma group
+//data[8..11] = 0, 0, 0, 1, 
+
+//sma length offset
+//data[12..13] =  2, 76,
+
+//sma netver
+//data[14..15] =  0, 16,
+
+//sma protocol 
+//data[16..17] = 96, 105
+
+///Speedwire protocol
+//SusyID
+//data[18..19] = 1, 93
+
+//SerialNumber
+//data[20..23] = 113, 87, 157, 42, 
+
+//Time
+//data[24..27] = 145, 195, 170, 229,
+
+//Total active power positive (8byte)
+//data[28..35] = 0, 1, 4, 0, 0, 0, 4, 192,
+
+//Total active enregy positive (12 byte)
+//data[36..47] =  0, 1, 8, 0, 0, 0, 0, 1, 27, 80, 113, 64,
+
+//Total active power negative (8byte)
+//data[48..55] =  0, 2, 4, 0, 0, 0, 0, 0, 
+
+//Total active enregy negative (12 byte)
+//data[56..67] = 0,2, 8, 0, 0, 0, 0, 0, 65, 115, 204, 96,
+
+//Total reactive power positive (8 byte)
+// data[68..75] = 0, 3, 4, 0, 0, 0, 0, 0,
+
+//Total reactive enegry pisitve (12 byte)
+// data[76..87] = 0, 3, 8, 0, 0, 0, 0, 0, 1, 68, 24, 192,
+
+//Total reactive power negative (8 byte)
+// data [88..95] = 0, 4, 4, 0, 0, 0, 7, 97,
+
+//Total reactive energy negative (12 byte)
+// data[96..107] = 0, 4, 8, 0, 0, 0, 0, 0, 203, 199, 123, 0,
+
+//Total apparent power positive (8byte)
+// data[108..115] = 0, 9, 4, 0, 0, 0, 8, 198,
+
+//TOtal apparent energy positiuve (12 byte)
+// data[116..127] = 0, 9, 8, 0, 0, 0, 0, 1, 121, 25, 106, 32,
+
+//Total apparent power negative (8 byte)
+// data[128..135] = 0, 10, 4, 0, 0, 0, 0, 0, 0,
+
+//Total apparent enegry negative (12 byte)
+// data[136..147] = 10, 8, 0, 0, 0, 0, 0, 70, 76, 180, 64,
+
+//Total Power Factor (8 byte)
+// data[148..155] = 0, 13, 4, 0, 0, 0, 2, 28,
+
+//Total Frequency
+// data[156..163] = 0, 14, 4, 0, 0, 0, 195, 240
+
+
+
+
+
+//L1 active power positive (8byte)
+//data[164..171] = 0, 21, 4, 0, 0, 0, 0, 0,
+
+//L1 active enregy positive (12 byte)
+//data[172..183] =  0, 21, 8, 0, 0, 0, 0, 0, 72, 109, 19, 160,
+
+//L1 active power negative (8byte)
+//data[184..191] =   0, 22, 4, 0, 0, 0, 0, 217, 
+
+//L1 active enregy negative (12 byte)
+//data[192..203] = 0, 22, 8, 0, 0, 0, 0, 0, 30, 95, 6, 64,
+
+//L1 reactive power positive (8 byte)
+// data[204..211] = 0, 23, 4, 0, 0, 0, 0, 0,
+
+//L1 reactive enegry pisitve (12 byte)
+// data[..87] =  0, 23, 8, 0, 0, 0, 0, 0, 0, 136, 59, 0,
+
+//L1 reactive power negative (8 byte)
+// data [..95] =  0, 24, 4, 0, 0, 0, 0, 223,
+
+//L1 reactive energy negative (12 byte)
+// data[..107] = 0, 24, 8, 0, 0, 0, 0, 0, 37, 222, 86, 0,
+
+//L1 apparent power positive (8byte)
+// data[..115] = 0, 29, 4, 0, 0, 0, 0, 0,
+
+//L1 apparent energy positiuve (12 byte)
+// data[..127] = 0, 29, 8, 0, 0, 0, 0, 0, 101, 164, 5, 0,
+
+//L1 apparent power negative (8 byte)
+// data[..135] = 0, 30, 4, 0, 0, 0, 1, 55,
+
+//L1 apparent enegry negative (12 byte)
+// data[..147] = 0, 30, 8, 0, 0, 0, 0, 0, 30, 244, 112, 63,
+
+//L1 Current
+// data[..163] =  0, 31, 4, 0, 0, 0, 0, 180,
+
+//L1 Voltage
+// data[..163] = 0, 32, 4, 0, 0, 3, 138, 34, 
+
+//L1 Power Factor (8 byte)
+// data[..155] = 0, 33, 4, 0, 0, 0, 2, 188,
+
+
+//L2 active power positive (8byte)
+//data[..35] =  0, 41, 4, 0, 0, 0, 6, 72,
+
+//L2 active enregy positive (12 byte)
+//data[..47] = 0, 41, 8, 0, 0, 0, 0, 0, 166, 88, 167, 224,
+
+//L2 active power negative (8byte)
+//data[..55] = 0, 42, 4, 0, 0, 0, 0, 0,
+
+//L2 active enregy negative (12 byte)
+//data[..67] = 0, 42, 8, 0, 0, 0, 0, 0, 16, 177, 174, 128,
+
+//L2 reactive power positive (8 byte)
+// data[..75] =   0, 43, 4, 0, 0, 0, 0, 0,
+
+//L2 reactive enegry pisitve (12 byte)
+// data[..87] =  0, 43, 8, 0, 0, 0, 0, 0, 1, 149, 101, 64,
+
+//L2 reactive power negative (8 byte)
+// data [..95] = 0, 44, 4, 0, 0, 0, 4, 236,
+
+//L2 reactive energy negative (12 byte)
+// data[..107] = 0, 44, 8, 0, 0, 0, 0, 0, 114, 214, 221, 96,
+
+//L2 apparent power positive (8byte)
+// data[..115] =  0, 49, 4, 0, 0, 0, 7, 251,
+
+//L2 apparent energy positiuve (12 byte)
+// data[..127] =  0, 49, 8, 0, 0, 0, 0, 0, 209, 9, 218, 224,
+
+//L2 apparent power negative (8 byte)
+// data[..135] =    0, 50, 4, 0, 0, 0, 0, 0,
+
+//L2 apparent enegry negative (12 byte)
+// data[..147] = 0, 50, 8, 0, 0, 0, 0, 0, 19, 30, 104, 192,
+
+//L2 Current
+// data[..163] = 0, 51, 4, 0, 0, 0, 4, 96,
+
+//L2 Voltage
+// data[..163] = 0, 52, 4, 0, 0, 3, 133, 4,
+
+//L2 Power Factor (8 byte)
+// data[..155] =  0, 53, 4, 0, 0, 0, 3, 22,
+
+
+
+
+
+
+//L3 active power positive (8byte)
+//data[..35] = 0, 61, 4, 0, 0, 0, 0, 0,
+
+//L3 active enregy positive (12 byte)
+//data[..47] =   0, 61, 8, 0, 0, 0, 0, 0, 58, 50, 2, 159,
+
+//L3 active power negative (8byte)
+//data[..55] =  0, 62, 4, 0, 0, 0, 0, 176,
+
+//L3 active enregy negative (12 byte)
+//data[..67] =  0, 62, 8, 0, 0, 0, 0, 0, 32, 9, 215, 224,
+
+//L3 reactive power positive (8 byte)
+// data[..75] = 0, 63, 4, 0, 0, 0, 0, 0,
+
+//L3 reactive enegry pisitve (12 byte)
+// data[..87] = 0, 63, 8, 0, 0, 0, 0, 0, 0, 93, 98, 64,
+
+//L3 reactive power negative (8 byte)
+// data [..95] = 0, 64, 4, 0, 0, 0, 1, 150,
+
+//L3 reactive energy negative (12 byte)
+// data[..107] = 0, 64, 8, 0, 0, 0, 0, 0, 52, 73, 49, 96,
+
+//L3 apparent power positive (8byte)
+// data[..115] = 0, 69, 4, 0, 0, 0, 0, 0,
+
+//L3 apparent energy positiuve (12 byte)
+// data[..127] = 0, 69, 8, 0, 0, 0, 0, 0, 93, 66, 99, 192,
+
+//L3 apparent power negative (8 byte)
+// data[..135] =  0, 70, 4, 0, 0, 0, 1, 187,
+
+//L3 apparent enegry negative (12 byte)
+// data[..147] = 0, 70, 8, 0, 0, 0, 0, 0, 33, 166, 237, 224,
+
+//L3 Current
+// data[..163] = 0, 71, 4, 0, 0, 0, 0, 230,
+
+//L3 Voltage
+// data[..163] = 0, 72, 4, 0, 0, 3, 130, 202,
+
+//L3 Power Factor (8 byte)
+// data[..155] = 0, 73, 4, 0, 0, 0, 1, 144,
+
+
+//Firmware Version
+//data[] 144, 0, 0, 0, 2, 0, 18, 82,
+
+
+//End of data
+//data = 0, 0, 0, 0	
+]]></ST>
+    </Implementation>
+    <Method Name="AddFloat" Id="{8b26af93-3e81-421e-8b63-e7ceff184035}">
+      <Declaration><![CDATA[METHOD AddFloat : BOOL
+VAR_INPUT
+	datatype : OBIS_Datatype;
+	floatdata : REAL;	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE datatype OF
+	OBIS_Datatype.TOTAL_ActivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[32]), n:= 4);
+
+	OBIS_Datatype.TOTAL_ActivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[52]), n:= 4);	
+		
+	OBIS_Datatype.TOTAL_ReactivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[72]), n:= 4);
+	
+	OBIS_Datatype.TOTAL_ReactivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[92]), n:= 4);	
+		
+	OBIS_Datatype.TOTAL_ApparentPowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[112]), n:= 4);
+	
+	OBIS_Datatype.TOTAL_ApparentPowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[132]), n:= 4);	
+		
+	OBIS_Datatype.TOTAL_PowerFactor:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[152]), n:= 4);	
+		
+	OBIS_Datatype.TOTAL_Frequency:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[160]), n:= 4);	
+		
+		
+		
+	OBIS_Datatype.L1_ActivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[168]), n:= 4);
+
+	OBIS_Datatype.L1_ActivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[188]), n:= 4);	
+		
+	OBIS_Datatype.L1_ReactivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[208]), n:= 4);
+	
+	OBIS_Datatype.L1_ReactivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[228]), n:= 4);	
+		
+	OBIS_Datatype.L1_ApparentPowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[248]), n:= 4);
+	
+	OBIS_Datatype.L1_ApparentPowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[268]), n:= 4);	
+		
+	OBIS_Datatype.L1_Current:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[288]), n:= 4);	
+
+	OBIS_Datatype.L1_Voltage:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[296]), n:= 4);	
+
+	OBIS_Datatype.L1_PowerFactor:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[304]), n:= 4);		
+
+//--------------------------
+
+	OBIS_Datatype.L2_ActivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[312]), n:= 4);
+
+	OBIS_Datatype.L2_ActivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[332]), n:= 4);	
+		
+	OBIS_Datatype.L2_ReactivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[352]), n:= 4);
+	
+	OBIS_Datatype.L2_ReactivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[372]), n:= 4);	
+		
+	OBIS_Datatype.L2_ApparentPowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[392]), n:= 4);
+	
+	OBIS_Datatype.L2_ApparentPowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[412]), n:= 4);	
+		
+	OBIS_Datatype.L2_Current:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[432]), n:= 4);	
+
+	OBIS_Datatype.L2_Voltage:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[440]), n:= 4);	
+
+	OBIS_Datatype.L2_PowerFactor:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[448]), n:= 4);	
+
+		
+
+	OBIS_Datatype.L3_ActivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[456]), n:= 4);
+
+	OBIS_Datatype.L3_ActivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[476]), n:= 4);	
+		
+	OBIS_Datatype.L3_ReactivePowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[496]), n:= 4);
+	
+	OBIS_Datatype.L3_ReactivePowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[516]), n:= 4);	
+		
+	OBIS_Datatype.L3_ApparentPowerPositive:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[536]), n:= 4);
+	
+	OBIS_Datatype.L3_ApparentPowerNegative:
+		u32tmp := REAL_TO_DWORD(floatdata * 10.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[556]), n:= 4);	
+		
+	OBIS_Datatype.L3_Current:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[576]), n:= 4);	
+
+	OBIS_Datatype.L3_Voltage:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[582]), n:= 4);	
+
+	OBIS_Datatype.L3_PowerFactor:
+		u32tmp := REAL_TO_DWORD(floatdata * 1000.0);
+		u32tmp := HOST_TO_BE32(in := u32tmp);
+		memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[590]), n:= 4);		
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AddTime" Id="{d979cbc5-daeb-4265-bdc4-cb5021b3c33c}">
+      <Declaration><![CDATA[METHOD AddTime : BOOL
+VAR_INPUT
+	u32time : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Time
+//data[24..27] = 145, 195, 170, 229,
+
+u32tmp := HOST_TO_BE32(in := u32time);
+memcpy(srcAddr := ADR(u32tmp), destAddr := ADR(data[24]), n:= 4);
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AddUint64" Id="{53a9dd78-c0fc-437d-9787-1cf6d15666c7}">
+      <Declaration><![CDATA[METHOD AddUint64 : BOOL
+VAR_INPUT
+	datatype : OBIS_Datatype;
+	u64data : LINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE datatype OF
+	OBIS_Datatype.TOTAL_ActiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[40]), n:= 8);
+
+	OBIS_Datatype.TOTAL_ActiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[60]), n:= 8);
+		
+	OBIS_Datatype.TOTAL_ReactiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[80]), n:= 8);
+
+	OBIS_Datatype.TOTAL_ReactiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[100]), n:= 8);	
+
+	OBIS_Datatype.TOTAL_ApparentEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[120]), n:= 8);
+
+	OBIS_Datatype.TOTAL_ApparentEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[140]), n:= 8);		
+
+//--------------------------------------
+
+	OBIS_Datatype.L1_ActiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[176]), n:= 8);
+
+	OBIS_Datatype.L1_ActiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[196]), n:= 8);
+		
+	OBIS_Datatype.L1_ReactiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[216]), n:= 8);
+
+	OBIS_Datatype.L1_ReactiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[236]), n:= 8);	
+
+	OBIS_Datatype.L1_ApparentEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[256]), n:= 8);
+
+	OBIS_Datatype.L1_ApparentEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[276]), n:= 8);		
+
+		
+//--------------------------------------
+
+	OBIS_Datatype.L2_ActiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[320]), n:= 8);
+
+	OBIS_Datatype.L2_ActiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[340]), n:= 8);
+		
+	OBIS_Datatype.L2_ReactiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[360]), n:= 8);
+
+	OBIS_Datatype.L2_ReactiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[380]), n:= 8);	
+
+	OBIS_Datatype.L2_ApparentEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[400]), n:= 8);
+
+	OBIS_Datatype.L2_ApparentEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[420]), n:= 8);		
+
+		
+		
+//--------------------------------------
+
+	OBIS_Datatype.L3_ActiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[464]), n:= 8);
+
+	OBIS_Datatype.L3_ActiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[484]), n:= 8);
+		
+	OBIS_Datatype.L3_ReactiveEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[504]), n:= 8);
+
+	OBIS_Datatype.L3_ReactiveEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[524]), n:= 8);	
+
+	OBIS_Datatype.L3_ApparentEnergyPositive:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[544]), n:= 8);
+
+	OBIS_Datatype.L3_ApparentEnergyNegative:
+		u64data := (u64data * 10) / 36;
+		u64data := HOST_TO_BE64EX(in := u64data);
+		memcpy(srcAddr := ADR(u64data), destAddr := ADR(data[564]), n:= 8);			
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetData" Id="{0e7d4e95-0258-4418-98d8-bfeffc9205c4}">
+      <Declaration><![CDATA[METHOD GetData : POINTER TO BYTE
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetData := ADR(data);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDataLength" Id="{b680cf8a-d93c-46aa-be1c-522708842689}">
+      <Declaration><![CDATA[METHOD GetDataLength : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetDataLength := 608;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_OBIS">
+      <LineId Id="3" Count="222" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OBIS.AddFloat">
+      <LineId Id="3" Count="180" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OBIS.AddTime">
+      <LineId Id="3" Count="5" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OBIS.AddUint64">
+      <LineId Id="3" Count="128" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OBIS.GetData">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OBIS.GetDataLength">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

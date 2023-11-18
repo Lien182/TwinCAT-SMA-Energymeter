@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="OBIS_Datatype" Id="{33df529c-855a-4983-b7a3-6a0228badeeb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE OBIS_Datatype :
+(
+	TOTAL_ActivePowerPositive := 0,
+	TOTAL_ActivePowerNegative := 1,
+	TOTAL_ActiveEnergyPositive := 2, 
+	TOTAL_ActiveEnergyNegative := 3,
+	TOTAL_ApparentPowerPositive := 4,
+	TOTAL_ApparentPowerNegative := 5,
+	TOTAL_ApparentEnergyPositive := 6, 
+	TOTAL_ApparentEnergyNegative := 7,
+	TOTAL_ReactivePowerPositive := 8,
+	TOTAL_ReactivePowerNegative := 9,
+	TOTAL_ReactiveEnergyPositive := 10, 
+	TOTAL_ReactiveEnergyNegative := 11,
+	TOTAL_PowerFactor := 12,
+	TOTAL_Frequency := 13, 
+	
+	L1_ActivePowerPositive := 14,
+	L1_ActivePowerNegative := 15,
+	L1_ActiveEnergyPositive := 16, 
+	L1_ActiveEnergyNegative := 17,
+	L1_ApparentPowerPositive := 18,
+	L1_ApparentPowerNegative := 19,
+	L1_ApparentEnergyPositive := 20, 
+	L1_ApparentEnergyNegative := 21,
+	L1_ReactivePowerPositive := 22,
+	L1_ReactivePowerNegative := 23,
+	L1_ReactiveEnergyPositive := 24, 
+	L1_ReactiveEnergyNegative := 25,
+	L1_Current := 26,
+	L1_Voltage := 27,
+	L1_PowerFactor := 28,
+	
+	L2_ActivePowerPositive := 29,
+	L2_ActivePowerNegative := 30,
+	L2_ActiveEnergyPositive := 31, 
+	L2_ActiveEnergyNegative := 32,
+	L2_ApparentPowerPositive := 33,
+	L2_ApparentPowerNegative := 34,
+	L2_ApparentEnergyPositive := 35, 
+	L2_ApparentEnergyNegative := 36,
+	L2_ReactivePowerPositive := 37,
+	L2_ReactivePowerNegative := 38,
+	L2_ReactiveEnergyPositive := 39, 
+	L2_ReactiveEnergyNegative := 40,
+	L2_Current := 41,
+	L2_Voltage := 42,
+	L2_PowerFactor := 43,
+	
+	L3_ActivePowerPositive := 44,
+	L3_ActivePowerNegative := 45,
+	L3_ActiveEnergyPositive := 46, 
+	L3_ActiveEnergyNegative := 47,
+	L3_ApparentPowerPositive := 48,
+	L3_ApparentPowerNegative := 49,
+	L3_ApparentEnergyPositive := 50, 
+	L3_ApparentEnergyNegative := 51,
+	L3_ReactivePowerPositive := 52,
+	L3_ReactivePowerNegative := 53,
+	L3_ReactiveEnergyPositive := 54, 
+	L3_ReactiveEnergyNegative := 55,
+	L3_Current := 56,
+	L3_Voltage := 57,
+	L3_PowerFactor := 58
+	
+	
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
