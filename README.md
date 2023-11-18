@@ -17,6 +17,6 @@ The example project shown in the figure comprises a CX9020 embedded industrial P
 ## Requirements 
 The software implementation was created using TwinCAT 3. It relies on the [TF6310](https://www.beckhoff.com/de-de/produkte/automation/twincat/tfxxxx-twincat-3-functions/tf6xxx-connectivity/tf6310.html) connectivity supplement for TwinCAT 3.
 
-According to measure grid parameters like voltage, current, frequency and active power, the project was tested with the Beckhoff EL3443 ethercat terminal. However, also other energy measurement terminals from Beckhoff, e.g, EL3453, are also well suited. 
+According to measure grid parameters like voltage, current, frequency and active power, the project was tested with the Beckhoff EL3443 EtherCAT terminal. However, also other energy measurement terminals from Beckhoff, e.g, EL3453, are well suited. 
 
 
